@@ -13,6 +13,9 @@
 		DA29BC892583B71700E74644 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29BC872583B71700E74644 /* Main.storyboard */; };
 		DA29BC8B2583B71A00E74644 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA29BC8A2583B71A00E74644 /* Assets.xcassets */; };
 		DA29BC8E2583B71A00E74644 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA29BC8C2583B71A00E74644 /* LaunchScreen.storyboard */; };
+		DA29BC9C2583B8BB00E74644 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BC9B2583B8BB00E74644 /* Coordinator.swift */; };
+		DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BC9E2583B8C500E74644 /* MainCoordinator.swift */; };
+		DA29BCA22583B8CE00E74644 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA12583B8CE00E74644 /* Storyboarded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		DA29BC8A2583B71A00E74644 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA29BC8D2583B71A00E74644 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA29BC8F2583B71A00E74644 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA29BC9B2583B8BB00E74644 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		DA29BC9E2583B8C500E74644 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		DA29BCA12583B8CE00E74644 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,50 @@
 		DA29BC802583B71700E74644 /* Repo Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				DA29BC9A2583B8A200E74644 /* Coordinators */,
+				DA29BC992583B89200E74644 /* Models */,
+				DA29BC982583B88B00E74644 /* Controllers */,
+				DA29BC962583B87300E74644 /* Views */,
 				DA29BC812583B71700E74644 /* AppDelegate.swift */,
 				DA29BC832583B71700E74644 /* SceneDelegate.swift */,
-				DA29BC852583B71700E74644 /* ViewController.swift */,
-				DA29BC872583B71700E74644 /* Main.storyboard */,
 				DA29BC8A2583B71A00E74644 /* Assets.xcassets */,
 				DA29BC8C2583B71A00E74644 /* LaunchScreen.storyboard */,
 				DA29BC8F2583B71A00E74644 /* Info.plist */,
 			);
 			path = "Repo Viewer";
+			sourceTree = "<group>";
+		};
+		DA29BC962583B87300E74644 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA29BC872583B71700E74644 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DA29BC982583B88B00E74644 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA29BC852583B71700E74644 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DA29BC992583B89200E74644 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DA29BC9A2583B8A200E74644 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				DA29BC9B2583B8BB00E74644 /* Coordinator.swift */,
+				DA29BC9E2583B8C500E74644 /* MainCoordinator.swift */,
+				DA29BCA12583B8CE00E74644 /* Storyboarded.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA29BC9C2583B8BB00E74644 /* Coordinator.swift in Sources */,
 				DA29BC862583B71700E74644 /* ViewController.swift in Sources */,
 				DA29BC822583B71700E74644 /* AppDelegate.swift in Sources */,
+				DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */,
 				DA29BC842583B71700E74644 /* SceneDelegate.swift in Sources */,
+				DA29BCA22583B8CE00E74644 /* Storyboarded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
