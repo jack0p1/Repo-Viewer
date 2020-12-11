@@ -30,6 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // create a basic UIWindow and activate it
         window = UIWindow(windowScene: windowScene)
         //window = UIWindow(frame: UIScreen.main.bounds)
+        window?.windowScene = windowScene
         window?.rootViewController = navController
         window?.makeKeyAndVisible()
     }

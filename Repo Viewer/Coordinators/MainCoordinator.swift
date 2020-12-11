@@ -16,9 +16,11 @@ class MainCoordinator: Coordinator {
     }
 
     func start() {
-        let vc = ViewController.instantiate()
+        let vc = SearchViewController.instantiate()
         vc.coordinator = self
-        navigationController.isNavigationBarHidden = true
+        //navigationController.isNavigationBarHidden = true
+        //navigationController.navigationBar.prefersLargeTitles = true
+        
         navigationController.pushViewController(vc, animated: false)
     }
 }
