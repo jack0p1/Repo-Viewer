@@ -17,6 +17,7 @@
 		DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BC9E2583B8C500E74644 /* MainCoordinator.swift */; };
 		DA29BCA22583B8CE00E74644 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA12583B8CE00E74644 /* Storyboarded.swift */; };
 		DA29BCA62583BCD900E74644 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA52583BCD900E74644 /* DetailsViewController.swift */; };
+		DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		DA29BC9E2583B8C500E74644 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		DA29BCA12583B8CE00E74644 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
 		DA29BCA52583BCD900E74644 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				DA29BC872583B71700E74644 /* Main.storyboard */,
+				DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 				DA29BC9C2583B8BB00E74644 /* Coordinator.swift in Sources */,
 				DA29BC862583B71700E74644 /* SearchViewController.swift in Sources */,
 				DA29BC822583B71700E74644 /* AppDelegate.swift in Sources */,
+				DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */,
 				DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */,
 				DA29BCA62583BCD900E74644 /* DetailsViewController.swift in Sources */,
 				DA29BC842583B71700E74644 /* SceneDelegate.swift in Sources */,

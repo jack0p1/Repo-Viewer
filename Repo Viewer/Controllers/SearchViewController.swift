@@ -15,6 +15,7 @@ class SearchViewController: UIViewController, Storyboarded {
     //MARK: UI Elements
     private lazy var searchBar = UISearchBar()
     private lazy var repoLabel = UILabel()
+    private lazy var repoTableView = UITableView()
     
     //MARK: - Functions
     override func viewDidLoad() {
@@ -25,6 +26,7 @@ class SearchViewController: UIViewController, Storyboarded {
         
         setupSearchBar()
         setupRepoLabel()
+        setupRepoTableView()
     }
 
     private func setupSearchBar() {
@@ -52,6 +54,20 @@ class SearchViewController: UIViewController, Storyboarded {
         
         repoLabel.text = "Repositories"
         repoLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+    }
+    
+    private func setupRepoTableView() {
+        view.addSubview(repoTableView)
+        repoTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            repoTableView.topAnchor.constraint(equalTo: repoLabel.bottomAnchor, constant: 18),
+            repoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            repoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            repoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        repoTableView.separatorInset = .zero
     }
 
 }
