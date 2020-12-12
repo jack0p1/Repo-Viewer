@@ -9,26 +9,29 @@ import UIKit
 
 class SearchViewController: UIViewController, Storyboarded {
     
-    // MARK: Properties
+    // MARK: - Properties
     weak var coordinator: MainCoordinator?
     
-    //MARK: UI Elements
+    // MARK: - UI Elements
     private lazy var searchBar = UISearchBar()
     private lazy var repoLabel = UILabel()
     private lazy var repoTableView = UITableView()
     
-    // MARK: Functions
+    // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Search"
+        navigationItem.title = "Search"
+        navigationItem.backButtonTitle = "Back"
+        navigationController?.navigationBar.tintColor = .white
         
         setupSearchBar()
         setupRepoLabel()
         setupRepoTableView()
     }
 
+    // MARK: - Setting up the view
     private func setupSearchBar() {
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -69,15 +72,9 @@ class SearchViewController: UIViewController, Storyboarded {
         ])
         
         repoTableView.separatorStyle = .none
-        //repoTableView.separatorInset = .zero
         repoTableView.dataSource = self
         repoTableView.delegate = self
-        
-        //repoTableView.rowHeight = UITableView.automaticDimension
-        //repoTableView.estimatedRowHeight = 92
-        //repoTableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     }
-
 }
 
 // MARK: - UISearchBarDelegate
@@ -107,16 +104,17 @@ extension SearchViewController: UITableViewDelegate {
         return 92
     }
     
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 92
-//    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 9
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        coordinator?.displayRepoDetails()
+        repoTableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

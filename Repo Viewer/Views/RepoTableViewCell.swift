@@ -13,7 +13,7 @@ class RepoTableViewCell: UITableViewCell {
     private lazy var contentStackView = makeContentStackView()
     private lazy var verticalStackView = makeVerticalStackView()
     private lazy var horizontalStackView = makeHorizontalStackView()
-    private lazy var thumbnailImageView = makePhotoImageView()
+    private lazy var thumbnailImageView = makeThumbnailImageView()
     private lazy var repoTitleLabel = makeRepoTitleLabel()
     private lazy var starImageView = makeStarImageView()
     private lazy var starsNumberLabel = makeStarNumberLabel()
@@ -31,11 +31,7 @@ class RepoTableViewCell: UITableViewCell {
     }
     
     // MARK: - Functions
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
-//    }
+
     func setupCell(repoTitle: String, thumbnail: UIImage, numberOfStars: Int) {
         thumbnailImageView.image = thumbnail
         repoTitleLabel.text = repoTitle
@@ -48,6 +44,7 @@ class RepoTableViewCell: UITableViewCell {
         
         contentView.addSubview(contentStackView)
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -59,22 +56,19 @@ class RepoTableViewCell: UITableViewCell {
         ])
         
         contentStackView.addArrangedSubview(thumbnailImageView)
-        
         horizontalStackView.addArrangedSubview(starImageView)
+        
         NSLayoutConstraint.activate([
             starImageView.heightAnchor.constraint(equalToConstant: 14),
             starImageView.widthAnchor.constraint(equalToConstant: 14)
         ])
         
         horizontalStackView.addArrangedSubview(starsNumberLabel)
-        
         verticalStackView.addArrangedSubview(repoTitleLabel)
-        
         verticalStackView.addArrangedSubview(horizontalStackView)
-
         contentStackView.addArrangedSubview(verticalStackView)
-        
         contentStackView.addArrangedSubview(forwardImageView)
+        
         forwardImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             forwardImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -92,7 +86,7 @@ class RepoTableViewCell: UITableViewCell {
         return sV
     }
     
-    private func makePhotoImageView() -> UIImageView {
+    private func makeThumbnailImageView() -> UIImageView {
         let iV = UIImageView()
         iV.backgroundColor = .lightGray
         iV.layer.cornerRadius = 10

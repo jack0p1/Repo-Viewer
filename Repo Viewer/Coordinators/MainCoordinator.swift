@@ -23,4 +23,10 @@ class MainCoordinator: Coordinator {
         
         navigationController.pushViewController(vc, animated: false)
     }
+    
+    func displayRepoDetails() {
+        let vc = DetailsViewController.instantiate()
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
