@@ -19,6 +19,7 @@
 		DA29BCA62583BCD900E74644 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA52583BCD900E74644 /* DetailsViewController.swift */; };
 		DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */; };
 		DA29BCAE2584F35A00E74644 /* RepoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCAD2584F35A00E74644 /* RepoPreview.swift */; };
+		DA29BCB72585844B00E74644 /* CommitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCB62585844B00E74644 /* CommitsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DA29BCA52583BCD900E74644 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoTableViewCell.swift; sourceTree = "<group>"; };
 		DA29BCAD2584F35A00E74644 /* RepoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoPreview.swift; sourceTree = "<group>"; };
+		DA29BCB62585844B00E74644 /* CommitsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				DA29BC872583B71700E74644 /* Main.storyboard */,
 				DA29BCA92584D3B100E74644 /* RepoTableViewCell.swift */,
+				DA29BCB62585844B00E74644 /* CommitsTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA29BCB72585844B00E74644 /* CommitsTableViewCell.swift in Sources */,
 				DA29BCAE2584F35A00E74644 /* RepoPreview.swift in Sources */,
 				DA29BC9C2583B8BB00E74644 /* Coordinator.swift in Sources */,
 				DA29BC862583B71700E74644 /* SearchViewController.swift in Sources */,

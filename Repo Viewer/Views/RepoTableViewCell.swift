@@ -30,9 +30,9 @@ class RepoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Functions
+    // MARK: - Common init and populate cells
 
-    func setupCell(repoTitle: String, thumbnail: UIImage, numberOfStars: Int) {
+    func populateCell(repoTitle: String, thumbnail: UIImage, numberOfStars: Int) {
         thumbnailImageView.image = thumbnail
         repoTitleLabel.text = repoTitle
         starsNumberLabel.text = "\(numberOfStars)"

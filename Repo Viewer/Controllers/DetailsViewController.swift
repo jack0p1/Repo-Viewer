@@ -33,8 +33,8 @@ class DetailsViewController: UIViewController, Storyboarded {
         setupStarsStackView()
         setupRepoTitleStackView()
         setupCommitsHistoryLabel()
-        setupCommitsTableView()
         setupShareButton()
+        setupCommitsTableView()
     }
     
     // MARK: - Setting up the view
@@ -159,7 +159,15 @@ class DetailsViewController: UIViewController, Storyboarded {
     }
     
     private func setupCommitsTableView() {
-        
+        view.addSubview(commitsTableView)
+        commitsTableView.translatesAutoresizingMaskIntoConstraints = false
+                
+        NSLayoutConstraint.activate([
+            commitsTableView.topAnchor.constraint(equalTo: commitsHistoryLabel.bottomAnchor, constant: 10),
+            commitsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            commitsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            commitsTableView.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -24)
+        ])
     }
     
     private func setupShareButton() {
@@ -192,5 +200,20 @@ class DetailsViewController: UIViewController, Storyboarded {
     @objc private func sharePressed() {
         print("share pressed")
     }
+}
 
+// MARK: - UITableViewDataSource
+extension DetailsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return CommitsTableViewCell()
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension DetailsViewController: UITableViewDelegate {
+    
 }
