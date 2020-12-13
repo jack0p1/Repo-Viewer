@@ -70,6 +70,7 @@
 		DA29BC802583B71700E74644 /* Repo Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				DA29BCB92586612C00E74644 /* Networking */,
 				DA29BC9A2583B8A200E74644 /* Coordinators */,
 				DA29BC992583B89200E74644 /* Models */,
 				DA29BC982583B88B00E74644 /* Controllers */,
@@ -118,6 +119,13 @@
 				DA29BCA12583B8CE00E74644 /* Storyboarded.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		DA29BCB92586612C00E74644 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

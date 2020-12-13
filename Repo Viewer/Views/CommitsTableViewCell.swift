@@ -32,7 +32,6 @@ class CommitsTableViewCell: UITableViewCell {
     private func commonInit() {
         contentView.addSubview(contentStackView)
         contentStackView.translatesAutoresizingMaskIntoConstraints = false
-//        contentStackView.backgroundColor = .red
         
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -49,10 +48,6 @@ class CommitsTableViewCell: UITableViewCell {
         commitsDetailsStackView.addArrangedSubview(authorMailLabel)
         commitsDetailsStackView.addArrangedSubview(commitMessageLabel)
         contentStackView.addArrangedSubview(commitsDetailsStackView)
-        
-        
-//        commitNumberLabel.centerYAnchor.constraint(equalTo: authorMailLabel.centerYAnchor).isActive = true
-//        authorMailLabel.centerYAnchor.constraint(equalTo: commitNumberLabel.centerYAnchor).isActive = true
     }
     
     func populateCell() {
@@ -66,7 +61,6 @@ class CommitsTableViewCell: UITableViewCell {
         sV.spacing = 20
         sV.alignment = .top
         sV.contentMode = .topLeft
-                
         return sV
     }
     
@@ -75,7 +69,6 @@ class CommitsTableViewCell: UITableViewCell {
         sV.axis = .vertical
         sV.spacing = 2
         sV.backgroundColor = .white
-        
         return sV
     }
     
@@ -88,12 +81,6 @@ class CommitsTableViewCell: UITableViewCell {
         label.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         label.layer.cornerRadius = size / 2
         label.layer.masksToBounds = true
-        
-//        NSLayoutConstraint.activate([
-//            label.heightAnchor.constraint(equalToConstant: 36),
-//            label.widthAnchor.constraint(equalToConstant: 36)
-//        ])
-        
         return label
     }
     

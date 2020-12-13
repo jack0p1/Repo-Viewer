@@ -33,6 +33,7 @@ class SearchViewController: UIViewController, Storyboarded {
 
     // MARK: - Setting up the view
     private func setupSearchBar() {
+        
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         

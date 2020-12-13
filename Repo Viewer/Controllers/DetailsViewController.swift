@@ -16,12 +16,15 @@ class DetailsViewController: UIViewController, Storyboarded {
     private lazy var thumbnailImageView = UIImageView()
     private lazy var repoByLabel = UILabel()
     private lazy var repoAuthorNameLabel = UILabel()
+    private lazy var starsNumberLabel = UILabel()
+    private lazy var starIconImageView = UIImageView()
     private lazy var starsStackView = UIStackView()
+    private lazy var repoTitleLabel = UILabel()
+    private lazy var viewOnlineButton = UIButton(type: .system)
     private lazy var repoTitleStackView = UIStackView()
-    private lazy var viewOnlineButton = UIButton()
     private lazy var commitsHistoryLabel = UILabel()
     private lazy var commitsTableView = UITableView()
-    private lazy var shareButton = UIButton()
+    private lazy var shareButton = UIButton(type: .roundedRect)
     
     // MARK: - Overrides
     override func viewDidLoad() {
@@ -30,7 +33,11 @@ class DetailsViewController: UIViewController, Storyboarded {
         setupThumbnail()
         setupRepoByLabel()
         setupRepoAuthorNameLabel()
+        setupStarIconImageView()
+        setupStarsNumberLabel()
         setupStarsStackView()
+        setupRepoTitleLabel()
+        setupViewOnlineButton()
         setupRepoTitleStackView()
         setupCommitsHistoryLabel()
         setupShareButton()
@@ -86,24 +93,27 @@ class DetailsViewController: UIViewController, Storyboarded {
         starsStackView.alignment = .center
         starsStackView.spacing = 3
         
-        let iV = UIImageView(image: UIImage(named: "fullStarIcon.png"))
-        
-        let label = UILabel()
-        label.text = "Number of Stars (000)"
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor(white: 1, alpha: 0.5)
-        
-        starsStackView.addArrangedSubview(iV)
-        starsStackView.addArrangedSubview(label)
+        starsStackView.addArrangedSubview(starIconImageView)
+        starsStackView.addArrangedSubview(starsNumberLabel)
         
         NSLayoutConstraint.activate([
             starsStackView.topAnchor.constraint(equalTo: repoAuthorNameLabel.bottomAnchor, constant: 6),
             starsStackView.leadingAnchor.constraint(equalTo: repoAuthorNameLabel.leadingAnchor),
             starsStackView.trailingAnchor.constraint(equalTo: repoAuthorNameLabel.trailingAnchor),
             
-            iV.heightAnchor.constraint(equalToConstant: 13),
-            iV.widthAnchor.constraint(equalToConstant: 13)
+            starIconImageView.heightAnchor.constraint(equalToConstant: 13),
+            starIconImageView.widthAnchor.constraint(equalToConstant: 13)
         ])
+    }
+    
+    private func setupStarIconImageView() {
+        starIconImageView = UIImageView(image: UIImage(named: "fullStarIcon.png"))
+    }
+    
+    private func setupStarsNumberLabel() {
+        starsNumberLabel.text = "Number of Stars (000)"
+        starsNumberLabel.font = UIFont.systemFont(ofSize: 13)
+        starsNumberLabel.textColor = UIColor(white: 1, alpha: 0.5)
     }
     
     private func setupRepoTitleStackView() {
@@ -114,35 +124,32 @@ class DetailsViewController: UIViewController, Storyboarded {
         repoTitleStackView.distribution = .fillProportionally
         repoTitleStackView.contentMode = .scaleToFill
         
-        let label = UILabel()
-        label.text = "Repo Title"
-        label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        
-        let button = setupViewOnlineButton()
-        
-        repoTitleStackView.addArrangedSubview(label)
-        repoTitleStackView.addArrangedSubview(button)
+        repoTitleStackView.addArrangedSubview(repoTitleLabel)
+        repoTitleStackView.addArrangedSubview(viewOnlineButton)
         
         NSLayoutConstraint.activate([
             repoTitleStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 17),
             repoTitleStackView.leadingAnchor.constraint(equalTo: starsStackView.leadingAnchor),
             repoTitleStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
-            label.leadingAnchor.constraint(equalTo: repoTitleStackView.leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: repoTitleStackView.trailingAnchor),
-            button.widthAnchor.constraint(equalToConstant: 118)
+            repoTitleLabel.leadingAnchor.constraint(equalTo: repoTitleStackView.leadingAnchor),
+            viewOnlineButton.trailingAnchor.constraint(equalTo: repoTitleStackView.trailingAnchor),
+            viewOnlineButton.widthAnchor.constraint(equalToConstant: 118)
         ])
     }
     
-    private func setupViewOnlineButton() -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle("VIEW ONLINE", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
-        button.layer.cornerRadius = 17
-        button.addTarget(self, action: #selector(viewOnlinePressed), for: .touchUpInside)
-        return button
+    private func setupRepoTitleLabel() {
+        repoTitleLabel.text = "Repo Title"
+        repoTitleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    }
+    
+    private func setupViewOnlineButton() {
+        viewOnlineButton.setTitle("VIEW ONLINE", for: .normal)
+        viewOnlineButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        viewOnlineButton.setTitleColor(.systemBlue, for: .normal)
+        viewOnlineButton.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
+        viewOnlineButton.layer.cornerRadius = 17
+        viewOnlineButton.addTarget(self, action: #selector(viewOnlinePressed), for: .touchUpInside)
     }
     
     private func setupCommitsHistoryLabel() {
@@ -221,5 +228,9 @@ extension DetailsViewController: UITableViewDataSource {
 extension DetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 111
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
     }
 }
