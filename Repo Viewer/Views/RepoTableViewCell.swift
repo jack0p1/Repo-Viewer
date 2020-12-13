@@ -31,7 +31,6 @@ class RepoTableViewCell: UITableViewCell {
     }
     
     // MARK: - Common init and populate cells
-
     func populateCell(repoTitle: String, thumbnail: UIImage, numberOfStars: Int) {
         thumbnailImageView.image = thumbnail
         repoTitleLabel.text = repoTitle

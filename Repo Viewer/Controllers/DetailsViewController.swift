@@ -168,6 +168,10 @@ class DetailsViewController: UIViewController, Storyboarded {
             commitsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             commitsTableView.bottomAnchor.constraint(equalTo: shareButton.topAnchor, constant: -24)
         ])
+        
+        commitsTableView.dataSource = self
+        commitsTableView.delegate = self
+        commitsTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: commitsTableView.frame.size.width, height: 1))
     }
     
     private func setupShareButton() {
@@ -215,5 +219,7 @@ extension DetailsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension DetailsViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 111
+    }
 }
