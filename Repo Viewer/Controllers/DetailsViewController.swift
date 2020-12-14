@@ -187,7 +187,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         
         shareButton.setTitle("Share Repo", for: .normal)
         shareButton.setImage(UIImage(named: "shareIcon.png"), for: .normal)
-        shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+        shareButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         shareButton.setTitleColor(.systemBlue, for: .normal)
         shareButton.backgroundColor = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
         shareButton.layer.cornerRadius = 10

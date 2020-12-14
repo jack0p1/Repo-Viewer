@@ -1,0 +1,6 @@
+
+target 'Repo Viewer' do
+
+  pod 'Alamofire', '~> 5.2'
+
+end

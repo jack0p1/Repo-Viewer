@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class RepoTableViewCell: UITableViewCell {
     
@@ -30,11 +31,25 @@ class RepoTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Overrides
+    override func prepareForReuse() {
+        thumbnailImageView.image = nil
+    }
+    
     // MARK: - Common init and populate cells
-    func populateCell(repoTitle: String, thumbnail: UIImage, numberOfStars: Int) {
-        thumbnailImageView.image = thumbnail
+    func populateCell(repoTitle: String, thumbnailURL: String?, numberOfStars: Int) {
+//        thumbnailImageView.image = thumbnail
         repoTitleLabel.text = repoTitle
         starsNumberLabel.text = "\(numberOfStars)"
+        
+        guard let url = thumbnailURL else { return }
+        
+        AF.download(url).responseData { [weak self] response in
+            if let data = response.value {
+                let image = UIImage(data: data)
+                self?.thumbnailImageView.image = image
+            }
+        }
     }
     
     private func commonInit() {
@@ -130,5 +145,13 @@ class RepoTableViewCell: UITableViewCell {
         let iV = UIImageView(image: UIImage(named: "forwardIcon.png"))
         return iV
     }
+    
+//    // MARK: - Setting up properties
+//    private func setupThumbnail() {
+//        if let filePath = Bundle.main.path(forResource: "imageName", ofType: "jpg"), let image = UIImage(contentsOfFile: filePath) {
+//            imageView.contentMode = .scaleAspectFit
+//            imageView.image = image
+//        }
+//    }
     
 }

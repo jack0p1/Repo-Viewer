@@ -1,0 +1,6 @@
+module Pods_Repo_Viewer {
+  umbrella header "Pods-Repo Viewer-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -11,6 +11,8 @@ class SearchViewController: UIViewController, Storyboarded {
     
     // MARK: - Properties
     weak var coordinator: MainCoordinator?
+    private var serviceManager: ServiceManager?
+    private var repoPreviews: [RepoPreview]?
     
     // MARK: - UI Elements
     private lazy var searchBar = UISearchBar()
@@ -25,6 +27,10 @@ class SearchViewController: UIViewController, Storyboarded {
         navigationItem.title = "Search"
         navigationItem.backButtonTitle = "Back"
         navigationController?.navigationBar.tintColor = .white
+        
+        serviceManager = ServiceManager()
+        serviceManager?.delegate = self
+        serviceManager?.searchFor("alamofire")
         
         setupSearchBar()
         setupRepoLabel()
@@ -45,6 +51,7 @@ class SearchViewController: UIViewController, Storyboarded {
         
         searchBar.searchBarStyle = UISearchBar.Style.minimal
         searchBar.placeholder = "Search..."
+        searchBar.delegate = self
     }
     
     private func setupRepoLabel() {
@@ -75,18 +82,34 @@ class SearchViewController: UIViewController, Storyboarded {
         repoTableView.separatorStyle = .none
         repoTableView.dataSource = self
         repoTableView.delegate = self
+        repoTableView.register(RepoTableViewCell.self, forCellReuseIdentifier: "repoCell")
     }
 }
 
 // MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
-    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        // When there is no text, filteredData is the same as the original data
+        // When user has entered text into the search box
+        // Use the filter method to iterate over all items in the data array
+        // For each item, return true if the item should be included and false if the
+        // item should NOT be included
+        
+//        filteredData = searchText.isEmpty ? data : data.filter { (item: String) -> Bool in
+//            // If dataItem matches the searchText, return true to include it
+//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
+//        }
+                
+        repoTableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+//        return 5
+        guard let previews = repoPreviews else { return 0 }
+        return previews.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -94,7 +117,12 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return RepoTableViewCell()
+        let cell = repoTableView.dequeueReusableCell(withIdentifier: "repoCell") as! RepoTableViewCell
+        guard let preview = repoPreviews?[indexPath.section] else {
+            return RepoTableViewCell()
+        }
+        cell.populateCell(repoTitle: preview.repoTitle, thumbnailURL: preview.avatarURL, numberOfStars: preview.numberOfStars)
+        return cell
     }
 
 }
@@ -117,5 +145,15 @@ extension SearchViewController: UITableViewDelegate {
         coordinator?.displayRepoDetails()
         repoTableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - ServiceManagerDelegate
+extension SearchViewController: ServiceManagerDelegate {
+    func serviceManager(searchResults: [RepoPreview]) {
+        repoPreviews = searchResults
+        
+        repoTableView.reloadData()
+    }
+    
 }
 
