@@ -209,6 +209,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         commitsTableView.delegate = self
         commitsTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: commitsTableView.frame.size.width, height: 1))
         commitsTableView.register(CommitsTableViewCell.self, forCellReuseIdentifier: "commitCell")
+        commitsTableView.allowsSelection = false
     }
     
     private func setupShareButton() {
@@ -247,7 +248,9 @@ class DetailsViewController: UIViewController, Storyboarded {
     }
     
     @objc private func sharePressed() {
-        print("share pressed")
+        if let title = repoPreview?.repoTitle, let url = repoPreview?.repoURL {
+            coordinator?.share(repoName: title, repoURL: url)
+        }
     }
 }
 
@@ -270,9 +273,9 @@ extension DetailsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension DetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
-    }
+//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+//        return nil
+//    }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         activityIndicator.stopAnimating()

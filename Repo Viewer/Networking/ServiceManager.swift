@@ -31,7 +31,7 @@ class ServiceManager {
     
     // MARK: - GitHub API requesting methods
     private func searchRepositories(query: String) {
-        let requestURL = baseURL + "/search/repositories?q=" + query// + "&token=" + token
+        let requestURL = baseURL + "/search/repositories?q=" + query
         let queryParameters: [String: Any] = [
             "sort": "stars",
             "order": "desc",

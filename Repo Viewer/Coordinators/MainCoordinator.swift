@@ -10,7 +10,6 @@ import UIKit
 class MainCoordinator: Coordinator {
     
     // MARK: - Properties
-    var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
     // MARK: - Initializers
@@ -31,5 +30,12 @@ class MainCoordinator: Coordinator {
         vc.coordinator = self
         vc.repoPreview = repo
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func share(repoName: String, repoURL: String) {
+        guard let url = URL(string: repoURL) else { return }
+        let items: [Any] = ["Repository name: \(repoName)", url]
+        let vc  = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        navigationController.present(vc, animated: true, completion: nil)
     }
 }

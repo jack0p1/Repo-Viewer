@@ -1,5 +1,5 @@
 # Repo-Viewer
-A simple iOS client for searching and viewing GitHub repositories.
+A simple MVC-designed iOS client for searching and viewing GitHub repositories. This project uses CocoaPods for installing the Alamofire framework for requesting data from the GitHub REST API.
 
-####### How to use:
+## How to use:
 In order to search repositories, type your phrase in the search bar and click 'Search'.

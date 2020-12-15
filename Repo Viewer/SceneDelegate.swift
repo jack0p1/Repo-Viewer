@@ -20,7 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create the main navigation controller to be used for our app.
         let navController = UINavigationController()
-
+        navController.overrideUserInterfaceStyle = .light
+        
         // Send that into our coordinator so that it can display view controllers.
         coordinator = MainCoordinator(navigationController: navController)
 

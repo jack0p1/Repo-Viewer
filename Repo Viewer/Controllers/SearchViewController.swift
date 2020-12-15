@@ -105,6 +105,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else { return }
         let text = parseSearchQuery(query: searchText)
         serviceManager?.searchFor(text)
+        searchBar.endEditing(true)
     }
 }
 
@@ -157,6 +158,5 @@ extension SearchViewController: SearchRepositoryDelegate {
         repoPreviews = searchResults
         repoTableView.reloadData()
     }
-    
 }
 
