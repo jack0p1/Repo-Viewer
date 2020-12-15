@@ -19,7 +19,7 @@ class ServiceManager {
     
     // MARK: - Initializers
     init() {
-        searchURL = "https://api.github.com/search/"
+        searchURL = "https://api.github.com/"
 //        token = "9a02f4d070c9359ff50b3bc005d947b7c3e53d73"
     }
     
@@ -32,9 +32,9 @@ class ServiceManager {
         
     }
     
-    // MARK: - Requesting methods
+    // MARK: - GitHub API requesting methods
     private func searchRepositories(query: String) {
-        let requestURL = searchURL + "repositories?q=" + query// + "&token=" + token
+        let requestURL = searchURL + "search/repositories?q=" + query// + "&token=" + token
         let queryParameters: [String: Any] = [
             "sort": "stars",
             "order": "desc",

@@ -37,14 +37,11 @@ class RepoTableViewCell: UITableViewCell {
     }
     
     // MARK: - Common init and populate cells
-    func populateCell(repoTitle: String, thumbnailURL: String?, numberOfStars: Int) {
-//        thumbnailImageView.image = thumbnail
+    func populateCell(repoTitle: String, thumbnailURL: String, numberOfStars: Int) {
         repoTitleLabel.text = repoTitle
         starsNumberLabel.text = "\(numberOfStars)"
-        
-        guard let url = thumbnailURL else { return }
-        
-        AF.download(url).responseData { [weak self] response in
+                
+        AF.download(thumbnailURL).responseData { [weak self] response in
             if let data = response.value {
                 let image = UIImage(data: data)
                 self?.thumbnailImageView.image = image

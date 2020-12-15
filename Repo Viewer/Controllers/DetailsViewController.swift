@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import Alamofire
 
 class DetailsViewController: UIViewController, Storyboarded {
     
     // MARK: - Properties
     weak var coordinator: MainCoordinator?
+    private var serviceManager: ServiceManager?
+    private var commitsPreviews: [CommitPreview]?
+    var repoPreview: RepoPreview?
     
     // MARK: - UI Elements
     private lazy var thumbnailImageView = UIImageView()
@@ -29,6 +33,8 @@ class DetailsViewController: UIViewController, Storyboarded {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        serviceManager?.delegate = self
 
         setupThumbnail()
         setupRepoByLabel()
@@ -49,6 +55,17 @@ class DetailsViewController: UIViewController, Storyboarded {
         view.addSubview(thumbnailImageView)
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         thumbnailImageView.backgroundColor = .lightGray
+        thumbnailImageView.contentMode = .scaleAspectFill
+        thumbnailImageView.clipsToBounds = true
+        
+        if let url = repoPreview?.avatarURL {
+            AF.download(url).responseData { [weak self] response in
+                if let data = response.value {
+                    let image = UIImage(data: data)
+                    self?.thumbnailImageView.image = image
+                }
+            }
+        }
         
         NSLayoutConstraint.activate([
             thumbnailImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -75,7 +92,7 @@ class DetailsViewController: UIViewController, Storyboarded {
     private func setupRepoAuthorNameLabel() {
         view.addSubview(repoAuthorNameLabel)
         repoAuthorNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        repoAuthorNameLabel.text = "Repo Author Name"
+        repoAuthorNameLabel.text = repoPreview?.ownerName
         repoAuthorNameLabel.font = UIFont.systemFont(ofSize: 28, weight: .bold)
         repoAuthorNameLabel.textColor = .white
         
@@ -111,7 +128,11 @@ class DetailsViewController: UIViewController, Storyboarded {
     }
     
     private func setupStarsNumberLabel() {
-        starsNumberLabel.text = "Number of Stars (000)"
+        starsNumberLabel.text = "Number of Stars ("
+        if let stars = repoPreview?.numberOfStars {
+            starsNumberLabel.text?.append(String(stars))
+        }
+        starsNumberLabel.text?.append(")")
         starsNumberLabel.font = UIFont.systemFont(ofSize: 13)
         starsNumberLabel.textColor = UIColor(white: 1, alpha: 0.5)
     }
@@ -133,13 +154,14 @@ class DetailsViewController: UIViewController, Storyboarded {
             repoTitleStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             
             repoTitleLabel.leadingAnchor.constraint(equalTo: repoTitleStackView.leadingAnchor),
+            
             viewOnlineButton.trailingAnchor.constraint(equalTo: repoTitleStackView.trailingAnchor),
             viewOnlineButton.widthAnchor.constraint(equalToConstant: 118)
         ])
     }
     
     private func setupRepoTitleLabel() {
-        repoTitleLabel.text = "Repo Title"
+        repoTitleLabel.text = repoPreview?.repoTitle
         repoTitleLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
@@ -160,7 +182,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         
         NSLayoutConstraint.activate([
             commitsHistoryLabel.topAnchor.constraint(equalTo: repoTitleStackView.bottomAnchor, constant: 35),
-            commitsHistoryLabel.leadingAnchor.constraint(equalTo: repoTitleStackView.leadingAnchor),
+            commitsHistoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             commitsHistoryLabel.trailingAnchor.constraint(equalTo: repoTitleStackView.trailingAnchor)
         ])
     }
@@ -205,7 +227,10 @@ class DetailsViewController: UIViewController, Storyboarded {
     
     // MARK: - Actions
     @objc private func viewOnlinePressed() {
-        print("view online pressed")
+        guard let safeString = repoPreview?.repoURL else { return }
+        if let safeUrl = URL(string: safeString) {
+            UIApplication.shared.open(safeUrl)
+        }
     }
     
     @objc private func sharePressed() {

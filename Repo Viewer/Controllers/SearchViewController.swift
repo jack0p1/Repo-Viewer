@@ -18,6 +18,7 @@ class SearchViewController: UIViewController, Storyboarded {
     private lazy var searchBar = UISearchBar()
     private lazy var repoLabel = UILabel()
     private lazy var repoTableView = UITableView()
+    private lazy var activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Overrides
     override func viewDidLoad() {
@@ -30,11 +31,12 @@ class SearchViewController: UIViewController, Storyboarded {
         
         serviceManager = ServiceManager()
         serviceManager?.delegate = self
-        serviceManager?.searchFor("alamofire")
+//        serviceManager?.searchFor("alamofire")
         
         setupSearchBar()
         setupRepoLabel()
         setupRepoTableView()
+        setupActivityIndicator()
     }
 
     // MARK: - Setting up the view
@@ -84,30 +86,33 @@ class SearchViewController: UIViewController, Storyboarded {
         repoTableView.delegate = self
         repoTableView.register(RepoTableViewCell.self, forCellReuseIdentifier: "repoCell")
     }
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: view.frame.size.width * 0.5, y: view.frame.size.height * 0.5)
+    }
+    
+    // MARK: - Parse search query
+    private func parseSearchQuery(query: String) -> String {
+        let parsedQuery = query.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+        return parsedQuery
+    }
 }
 
 // MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // When there is no text, filteredData is the same as the original data
-        // When user has entered text into the search box
-        // Use the filter method to iterate over all items in the data array
-        // For each item, return true if the item should be included and false if the
-        // item should NOT be included
-        
-//        filteredData = searchText.isEmpty ? data : data.filter { (item: String) -> Bool in
-//            // If dataItem matches the searchText, return true to include it
-//            return item.range(of: searchText, options: .caseInsensitive, range: nil, locale: nil) != nil
-//        }
-                
-        repoTableView.reloadData()
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        activityIndicator.startAnimating()
+        guard let searchText = searchBar.text else { return }
+        let text = parseSearchQuery(query: searchText)
+        print(text)
+        serviceManager?.searchFor(text)
     }
 }
 
 // MARK: - UITableViewDataSource
 extension SearchViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return 5
         guard let previews = repoPreviews else { return 0 }
         return previews.count
     }
@@ -142,8 +147,13 @@ extension SearchViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        coordinator?.displayRepoDetails()
         repoTableView.deselectRow(at: indexPath, animated: true)
+        guard let preview = repoPreviews?[indexPath.section] else { return }
+        coordinator?.displayRepoDetails(for: preview)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        activityIndicator.stopAnimating()
     }
 }
 

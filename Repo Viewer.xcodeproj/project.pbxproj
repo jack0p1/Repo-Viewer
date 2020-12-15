@@ -24,6 +24,7 @@
 		DA29BCC12586851B00E74644 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCC02586851B00E74644 /* ServiceManager.swift */; };
 		DA29BCC42586892700E74644 /* ServiceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCC32586892700E74644 /* ServiceManagerDelegate.swift */; };
 		DA29BCCD2587987400E74644 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCCC2587987400E74644 /* Repositories.swift */; };
+		DA98216E2588179500098C3B /* CommitPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98216D2588179500098C3B /* CommitPreview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		DA29BCC02586851B00E74644 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		DA29BCC32586892700E74644 /* ServiceManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManagerDelegate.swift; sourceTree = "<group>"; };
 		DA29BCCC2587987400E74644 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
+		DA98216D2588179500098C3B /* CommitPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitPreview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				DA29BCAD2584F35A00E74644 /* RepoPreview.swift */,
 				DA29BCCC2587987400E74644 /* Repositories.swift */,
+				DA98216D2588179500098C3B /* CommitPreview.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				DA29BC862583B71700E74644 /* SearchViewController.swift in Sources */,
 				DA29BC822583B71700E74644 /* AppDelegate.swift in Sources */,
 				DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */,
+				DA98216E2588179500098C3B /* CommitPreview.swift in Sources */,
 				DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */,
 				DA29BCA62583BCD900E74644 /* DetailsViewController.swift in Sources */,
 				DA29BCCD2587987400E74644 /* Repositories.swift in Sources */,
