@@ -14,7 +14,7 @@ class CommitsTableViewCell: UITableViewCell {
     private lazy var commitsDetailsStackView = makeCommitsDetailsStackView()
     private lazy var commitNumberLabel = makeCommitNumberLabel()
     private lazy var authorNameLabel = makeAuthorNameLabel()
-    private lazy var authorMailLabel = makeAuthorMailLabel()
+    private lazy var authorEmailLabel = makeAuthorMailLabel()
     private lazy var commitMessageLabel = makeCommitMessageLabel()
 
     // MARK: - Initializers
@@ -45,13 +45,16 @@ class CommitsTableViewCell: UITableViewCell {
         
         contentStackView.addArrangedSubview(commitNumberLabel)
         commitsDetailsStackView.addArrangedSubview(authorNameLabel)
-        commitsDetailsStackView.addArrangedSubview(authorMailLabel)
+        commitsDetailsStackView.addArrangedSubview(authorEmailLabel)
         commitsDetailsStackView.addArrangedSubview(commitMessageLabel)
         contentStackView.addArrangedSubview(commitsDetailsStackView)
     }
     
-    func populateCell() {
-        
+    func populateCell(authorName: String, authorEmailAddress: String, commitMessage: String, commitNumber: Int) {
+        authorNameLabel.text = authorName
+        authorEmailLabel.text = authorEmailAddress
+        commitMessageLabel.text = commitMessage
+        commitNumberLabel.text = "\(commitNumber)"
     }
     
     // MARK: - Computing properties

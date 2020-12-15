@@ -142,13 +142,4 @@ class RepoTableViewCell: UITableViewCell {
         let iV = UIImageView(image: UIImage(named: "forwardIcon.png"))
         return iV
     }
-    
-//    // MARK: - Setting up properties
-//    private func setupThumbnail() {
-//        if let filePath = Bundle.main.path(forResource: "imageName", ofType: "jpg"), let image = UIImage(contentsOfFile: filePath) {
-//            imageView.contentMode = .scaleAspectFit
-//            imageView.image = image
-//        }
-//    }
-    
 }

@@ -22,9 +22,10 @@
 		DA29BCAE2584F35A00E74644 /* RepoPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCAD2584F35A00E74644 /* RepoPreview.swift */; };
 		DA29BCB72585844B00E74644 /* CommitsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCB62585844B00E74644 /* CommitsTableViewCell.swift */; };
 		DA29BCC12586851B00E74644 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCC02586851B00E74644 /* ServiceManager.swift */; };
-		DA29BCC42586892700E74644 /* ServiceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCC32586892700E74644 /* ServiceManagerDelegate.swift */; };
+		DA29BCC42586892700E74644 /* SearchRepositoryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCC32586892700E74644 /* SearchRepositoryDelegate.swift */; };
 		DA29BCCD2587987400E74644 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCCC2587987400E74644 /* Repositories.swift */; };
 		DA98216E2588179500098C3B /* CommitPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98216D2588179500098C3B /* CommitPreview.swift */; };
+		DA98217425893BA000098C3B /* CommitsDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98217325893BA000098C3B /* CommitsDetailsDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,9 +48,10 @@
 		DA29BCAD2584F35A00E74644 /* RepoPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoPreview.swift; sourceTree = "<group>"; };
 		DA29BCB62585844B00E74644 /* CommitsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsTableViewCell.swift; sourceTree = "<group>"; };
 		DA29BCC02586851B00E74644 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
-		DA29BCC32586892700E74644 /* ServiceManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManagerDelegate.swift; sourceTree = "<group>"; };
+		DA29BCC32586892700E74644 /* SearchRepositoryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRepositoryDelegate.swift; sourceTree = "<group>"; };
 		DA29BCCC2587987400E74644 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 		DA98216D2588179500098C3B /* CommitPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitPreview.swift; sourceTree = "<group>"; };
+		DA98217325893BA000098C3B /* CommitsDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsDetailsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				DA29BCC02586851B00E74644 /* ServiceManager.swift */,
-				DA29BCC32586892700E74644 /* ServiceManagerDelegate.swift */,
+				DA29BCC32586892700E74644 /* SearchRepositoryDelegate.swift */,
+				DA98217325893BA000098C3B /* CommitsDetailsDelegate.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				DA29BCB72585844B00E74644 /* CommitsTableViewCell.swift in Sources */,
 				DA29BCAE2584F35A00E74644 /* RepoPreview.swift in Sources */,
 				DA29BC9C2583B8BB00E74644 /* Coordinator.swift in Sources */,
+				DA98217425893BA000098C3B /* CommitsDetailsDelegate.swift in Sources */,
 				DA29BC862583B71700E74644 /* SearchViewController.swift in Sources */,
 				DA29BC822583B71700E74644 /* AppDelegate.swift in Sources */,
 				DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */,
@@ -272,7 +276,7 @@
 				DA29BCA62583BCD900E74644 /* DetailsViewController.swift in Sources */,
 				DA29BCCD2587987400E74644 /* Repositories.swift in Sources */,
 				DA29BC842583B71700E74644 /* SceneDelegate.swift in Sources */,
-				DA29BCC42586892700E74644 /* ServiceManagerDelegate.swift in Sources */,
+				DA29BCC42586892700E74644 /* SearchRepositoryDelegate.swift in Sources */,
 				DA29BCA22583B8CE00E74644 /* Storyboarded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

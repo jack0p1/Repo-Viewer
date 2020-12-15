@@ -30,8 +30,7 @@ class SearchViewController: UIViewController, Storyboarded {
         navigationController?.navigationBar.tintColor = .white
         
         serviceManager = ServiceManager()
-        serviceManager?.delegate = self
-//        serviceManager?.searchFor("alamofire")
+        serviceManager?.searchRepositoryDelegate = self
         
         setupSearchBar()
         setupRepoLabel()
@@ -105,7 +104,6 @@ extension SearchViewController: UISearchBarDelegate {
         activityIndicator.startAnimating()
         guard let searchText = searchBar.text else { return }
         let text = parseSearchQuery(query: searchText)
-        print(text)
         serviceManager?.searchFor(text)
     }
 }
@@ -133,11 +131,7 @@ extension SearchViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension SearchViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 92
-    }
-    
+extension SearchViewController: UITableViewDelegate {    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 9
     }
@@ -158,10 +152,9 @@ extension SearchViewController: UITableViewDelegate {
 }
 
 // MARK: - ServiceManagerDelegate
-extension SearchViewController: ServiceManagerDelegate {
-    func serviceManager(searchResults: [RepoPreview]) {
+extension SearchViewController: SearchRepositoryDelegate {
+    func repositoriesLoaded(searchResults: [RepoPreview]) {
         repoPreviews = searchResults
-        
         repoTableView.reloadData()
     }
     

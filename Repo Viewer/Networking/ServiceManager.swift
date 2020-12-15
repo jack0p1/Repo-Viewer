@@ -11,16 +11,13 @@ import Alamofire
 class ServiceManager {
     
     // MARK: - Properties
-    weak var delegate: ServiceManagerDelegate?
-    private var searchURL: String
-//    private let token: String
-    
-//    private var repoPreviews: [RepoPreview]?
+    weak var searchRepositoryDelegate: SearchRepositoryDelegate?
+    weak var commitsDetailsDelegate: CommitsDetailsDelegate?
+    private var baseURL: String
     
     // MARK: - Initializers
     init() {
-        searchURL = "https://api.github.com/"
-//        token = "9a02f4d070c9359ff50b3bc005d947b7c3e53d73"
+        baseURL = "https://api.github.com"
     }
     
     // MARK: - Starting methods
@@ -28,32 +25,35 @@ class ServiceManager {
         searchRepositories(query: query)
     }
     
-    func getDetailsFor() {
-        
+    func getDetailsFor( repository: String, owner: String) {
+        getLastCommits(repository: repository, owner: owner)
     }
     
     // MARK: - GitHub API requesting methods
     private func searchRepositories(query: String) {
-        let requestURL = searchURL + "search/repositories?q=" + query// + "&token=" + token
+        let requestURL = baseURL + "/search/repositories?q=" + query// + "&token=" + token
         let queryParameters: [String: Any] = [
             "sort": "stars",
             "order": "desc",
             "per_page": "100"
-//            "page": "1"
         ]
         
         AF.request(requestURL, parameters: queryParameters)
           .responseDecodable(of: Repositories.self) { response in
             guard let items = response.value else { return }
-//            self.repoPreviews = items.items
-//            print(response.debugDescription)
-//            print("flag1")
-//            guard let previews = repoPreviews else { return }
-            self.delegate?.serviceManager(searchResults: items.items)
+            self.searchRepositoryDelegate?.repositoriesLoaded(searchResults: items.items)
           }
     }
     
-    private func getRepoDetails() {
-        
+    private func getLastCommits(repository: String, owner: String) {
+        let requestURL = baseURL + "/repos" + "/\(owner)" + "/\(repository)" + "/commits"
+        let queryParameters: [String: Any] = [
+            "per_page": "3"
+        ]
+        AF.request(requestURL, parameters: queryParameters)
+          .responseDecodable(of: [CommitPreview].self) { response in
+            guard let items = response.value else { return }
+            self.commitsDetailsDelegate?.commitsDetailsLoaded(commits: items)
+          }
     }
 }

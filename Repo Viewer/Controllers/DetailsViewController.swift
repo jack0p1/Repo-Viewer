@@ -29,13 +29,17 @@ class DetailsViewController: UIViewController, Storyboarded {
     private lazy var commitsHistoryLabel = UILabel()
     private lazy var commitsTableView = UITableView()
     private lazy var shareButton = UIButton(type: .roundedRect)
+    private lazy var activityIndicator = UIActivityIndicatorView()
     
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        serviceManager?.delegate = self
-
+        serviceManager = ServiceManager()
+        serviceManager?.commitsDetailsDelegate = self
+        if let title = repoPreview?.repoTitle, let owner = repoPreview?.ownerName {
+            serviceManager?.getDetailsFor(repository: title, owner: owner)
+        }
         setupThumbnail()
         setupRepoByLabel()
         setupRepoAuthorNameLabel()
@@ -48,6 +52,9 @@ class DetailsViewController: UIViewController, Storyboarded {
         setupCommitsHistoryLabel()
         setupShareButton()
         setupCommitsTableView()
+        setupActivityIndicator()
+        
+        activityIndicator.startAnimating()
     }
     
     // MARK: - Setting up the view
@@ -201,6 +208,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         commitsTableView.dataSource = self
         commitsTableView.delegate = self
         commitsTableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: commitsTableView.frame.size.width, height: 1))
+        commitsTableView.register(CommitsTableViewCell.self, forCellReuseIdentifier: "commitCell")
     }
     
     private func setupShareButton() {
@@ -225,6 +233,11 @@ class DetailsViewController: UIViewController, Storyboarded {
         ])
     }
     
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.center = CGPoint(x: view.frame.size.width * 0.5, y: view.frame.size.height * 0.5)
+    }
+    
     // MARK: - Actions
     @objc private func viewOnlinePressed() {
         guard let safeString = repoPreview?.repoURL else { return }
@@ -241,21 +254,35 @@ class DetailsViewController: UIViewController, Storyboarded {
 // MARK: - UITableViewDataSource
 extension DetailsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        guard let commits = commitsPreviews else { return 0 }
+        return commits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return CommitsTableViewCell()
+        let cell = commitsTableView.dequeueReusableCell(withIdentifier: "commitCell") as! CommitsTableViewCell
+        guard let commit = commitsPreviews?[indexPath.row] else {
+            return CommitsTableViewCell()
+        }
+        cell.populateCell(authorName: commit.authorName, authorEmailAddress: commit.authorEmailAddress, commitMessage: commit.commitMessage, commitNumber: indexPath.row + 1)
+        return cell
     }
 }
 
 // MARK: - UITableViewDelegate
 extension DetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 111
-    }
-    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        activityIndicator.stopAnimating()
+    }
+}
+
+// MARK: - ServiceManagerDelegate
+extension DetailsViewController: CommitsDetailsDelegate {
+    func commitsDetailsLoaded(commits: [CommitPreview]) {
+        commitsPreviews = commits
+        commitsTableView.reloadData()
     }
 }

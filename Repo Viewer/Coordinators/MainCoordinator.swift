@@ -13,7 +13,6 @@ class MainCoordinator: Coordinator {
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     
-    
     // MARK: - Initializers
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
