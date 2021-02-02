@@ -39,10 +39,10 @@ class ServiceManager {
         ]
         
         AF.request(requestURL, parameters: queryParameters)
-          .responseDecodable(of: Repositories.self) { response in
-            guard let items = response.value else { return }
-            self.searchRepositoryDelegate?.repositoriesLoaded(searchResults: items.items)
-          }
+            .responseDecodable(of: Repositories.self) { response in
+                guard let items = response.value else { return }
+                self.searchRepositoryDelegate?.repositoriesLoaded(searchResults: items.items)
+            }
     }
     
     private func getLastCommits(repository: String, owner: String) {
@@ -51,9 +51,9 @@ class ServiceManager {
             "per_page": "3"
         ]
         AF.request(requestURL, parameters: queryParameters)
-          .responseDecodable(of: [CommitPreview].self) { response in
-            guard let items = response.value else { return }
-            self.commitsDetailsDelegate?.commitsDetailsLoaded(commits: items)
-          }
+            .responseDecodable(of: [CommitPreview].self) { response in
+                guard let items = response.value else { return }
+                self.commitsDetailsDelegate?.commitsDetailsLoaded(commits: items)
+            }
     }
 }

@@ -26,6 +26,7 @@
 		DA29BCCD2587987400E74644 /* Repositories.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA29BCCC2587987400E74644 /* Repositories.swift */; };
 		DA98216E2588179500098C3B /* CommitPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98216D2588179500098C3B /* CommitPreview.swift */; };
 		DA98217425893BA000098C3B /* CommitsDetailsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA98217325893BA000098C3B /* CommitsDetailsDelegate.swift */; };
+		DAD8D37025C983BF001CBF33 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD8D36F25C983BF001CBF33 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		DA29BCCC2587987400E74644 /* Repositories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repositories.swift; sourceTree = "<group>"; };
 		DA98216D2588179500098C3B /* CommitPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitPreview.swift; sourceTree = "<group>"; };
 		DA98217325893BA000098C3B /* CommitsDetailsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsDetailsDelegate.swift; sourceTree = "<group>"; };
+		DAD8D36F25C983BF001CBF33 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				DA29BC8A2583B71A00E74644 /* Assets.xcassets */,
 				DA29BC8C2583B71A00E74644 /* LaunchScreen.storyboard */,
 				DA29BC8F2583B71A00E74644 /* Info.plist */,
+				DAD8D36F25C983BF001CBF33 /* Constants.swift */,
 			);
 			path = "Repo Viewer";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				DA98217425893BA000098C3B /* CommitsDetailsDelegate.swift in Sources */,
 				DA29BC862583B71700E74644 /* SearchViewController.swift in Sources */,
 				DA29BC822583B71700E74644 /* AppDelegate.swift in Sources */,
+				DAD8D37025C983BF001CBF33 /* Constants.swift in Sources */,
 				DA29BCAA2584D3B100E74644 /* RepoTableViewCell.swift in Sources */,
 				DA98216E2588179500098C3B /* CommitPreview.swift in Sources */,
 				DA29BC9F2583B8C500E74644 /* MainCoordinator.swift in Sources */,

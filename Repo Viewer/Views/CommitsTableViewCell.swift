@@ -8,7 +8,7 @@
 import UIKit
 
 class CommitsTableViewCell: UITableViewCell {
-
+    
     // MARK: - Properties
     private lazy var contentStackView = makeContentStackView()
     private lazy var commitsDetailsStackView = makeCommitsDetailsStackView()
@@ -16,7 +16,7 @@ class CommitsTableViewCell: UITableViewCell {
     private lazy var authorNameLabel = makeAuthorNameLabel()
     private lazy var authorEmailLabel = makeAuthorMailLabel()
     private lazy var commitMessageLabel = makeCommitMessageLabel()
-
+    
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,8 +35,8 @@ class CommitsTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: K.Margins.cellLeading + 4),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: K.Margins.cellTrailing),
             contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
             
             commitNumberLabel.heightAnchor.constraint(equalToConstant: 36),

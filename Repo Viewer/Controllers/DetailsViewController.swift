@@ -158,7 +158,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         NSLayoutConstraint.activate([
             repoTitleStackView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 17),
             repoTitleStackView.leadingAnchor.constraint(equalTo: starsStackView.leadingAnchor),
-            repoTitleStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            repoTitleStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: K.Margins.trailing),
             
             repoTitleLabel.leadingAnchor.constraint(equalTo: repoTitleStackView.leadingAnchor),
             
@@ -189,7 +189,7 @@ class DetailsViewController: UIViewController, Storyboarded {
         
         NSLayoutConstraint.activate([
             commitsHistoryLabel.topAnchor.constraint(equalTo: repoTitleStackView.bottomAnchor, constant: 35),
-            commitsHistoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            commitsHistoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Margins.leading),
             commitsHistoryLabel.trailingAnchor.constraint(equalTo: repoTitleStackView.trailingAnchor)
         ])
     }
@@ -197,7 +197,7 @@ class DetailsViewController: UIViewController, Storyboarded {
     private func setupCommitsTableView() {
         view.addSubview(commitsTableView)
         commitsTableView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
         NSLayoutConstraint.activate([
             commitsTableView.topAnchor.constraint(equalTo: commitsHistoryLabel.bottomAnchor, constant: 10),
             commitsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -227,8 +227,8 @@ class DetailsViewController: UIViewController, Storyboarded {
         shareButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -5)
         
         NSLayoutConstraint.activate([
-            shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            shareButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            shareButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Margins.leading),
+            shareButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: K.Margins.trailing),
             shareButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -44),
             shareButton.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -273,10 +273,6 @@ extension DetailsViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension DetailsViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-//        return nil
-//    }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         activityIndicator.stopAnimating()
     }

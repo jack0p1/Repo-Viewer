@@ -37,17 +37,16 @@ class SearchViewController: UIViewController, Storyboarded {
         setupRepoTableView()
         setupActivityIndicator()
     }
-
+    
     // MARK: - Setting up the view
     private func setupSearchBar() {
-        
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12)
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Margins.leading - 8),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: K.Margins.trailing + 8)
         ])
         
         searchBar.searchBarStyle = UISearchBar.Style.minimal
@@ -61,8 +60,8 @@ class SearchViewController: UIViewController, Storyboarded {
         
         NSLayoutConstraint.activate([
             repoLabel.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 30),
-            repoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            repoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            repoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Margins.leading),
+            repoLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: K.Margins.trailing)
         ])
         
         repoLabel.text = "Repositories"
@@ -75,8 +74,8 @@ class SearchViewController: UIViewController, Storyboarded {
         
         NSLayoutConstraint.activate([
             repoTableView.topAnchor.constraint(equalTo: repoLabel.bottomAnchor, constant: 18),
-            repoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            repoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            repoTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: K.Margins.leading),
+            repoTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: K.Margins.trailing),
             repoTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
@@ -128,7 +127,7 @@ extension SearchViewController: UITableViewDataSource {
         cell.populateCell(repoTitle: preview.repoTitle, thumbnailURL: preview.avatarURL, numberOfStars: preview.numberOfStars)
         return cell
     }
-
+    
 }
 
 // MARK: - UITableViewDelegate

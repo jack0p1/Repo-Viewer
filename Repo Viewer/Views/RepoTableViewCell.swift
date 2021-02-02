@@ -19,7 +19,7 @@ class RepoTableViewCell: UITableViewCell {
     private lazy var starImageView = makeStarImageView()
     private lazy var starsNumberLabel = makeStarNumberLabel()
     private lazy var forwardImageView = makeForwardImageView()
-
+    
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,7 +40,7 @@ class RepoTableViewCell: UITableViewCell {
     func populateCell(repoTitle: String, thumbnailURL: String, numberOfStars: Int) {
         repoTitleLabel.text = repoTitle
         starsNumberLabel.text = "\(numberOfStars)"
-                
+        
         AF.download(thumbnailURL).responseData { [weak self] response in
             if let data = response.value {
                 let image = UIImage(data: data)
@@ -58,9 +58,9 @@ class RepoTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            contentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: K.Margins.cellLeading),
             contentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            contentStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: K.Margins.cellTrailing),
             
             thumbnailImageView.widthAnchor.constraint(equalToConstant: 60),
             thumbnailImageView.heightAnchor.constraint(equalToConstant: 60)
@@ -101,6 +101,7 @@ class RepoTableViewCell: UITableViewCell {
         let iV = UIImageView()
         iV.backgroundColor = .lightGray
         iV.layer.cornerRadius = 10
+        iV.layer.masksToBounds = true
         return iV
     }
     
